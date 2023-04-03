@@ -2,11 +2,11 @@ import { Configuration } from 'webpack'
 import { merge } from 'webpack-merge'
 
 import {
-    ConfigArgs,
-    getWebpackCommonConfig,
-    getWebpackDevelopmentConfig,
-    getWebpackProductionConfig,
-    log
+  ConfigArgs,
+  getWebpackCommonConfig,
+  getWebpackDevelopmentConfig,
+  getWebpackProductionConfig,
+  log
 } from '@wbuilder/devtools'
 
 // Mode Config
@@ -18,7 +18,12 @@ const getModeConfig = {
 // Mode Configuration (development/production)
 const modeConfig: (args: ConfigArgs) => Configuration = ({ mode, type, packageName }) => {
   const getWebpackConfiguration = getModeConfig[mode]
-  return getWebpackConfiguration({ configType: type, packageName, sandbox: true, devServer: true })
+  return getWebpackConfiguration({
+    configType: type,
+    packageName,
+    sandbox: true,
+    devServer: true
+  })
 }
 
 // Merging all configurations
