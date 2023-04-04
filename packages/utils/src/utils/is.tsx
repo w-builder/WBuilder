@@ -1,4 +1,4 @@
-import { isValidLanguage } from './i18n'
+import { isValidLanguage } from '@wbuilder/i18n'
 
 console.log('IS UTILS')
 const is = {
