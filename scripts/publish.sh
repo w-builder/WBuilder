@@ -31,9 +31,20 @@ echo $lastCommit
 # fi
 
 if [[ "$lastCommit" == *"$fix"* ]]; then
+  if [[ "$lastCommit" == *"$i18n"* ]]; then
+    echo "Versioning @wbuilder/i18n"
+    execute=`cd packages/i18n && npm version patch && git add . && git commit -m "Versioning @wbuilder/i18n"`
+    echo "Creating a patch version: $execute"
+    push=`git push origin main -f`
+    echo "$push"
+    publish=`cd packages/utils && npm publish`
+    echo "$publish"
+    exit
+  fi
+
   if [[ "$lastCommit" == *"$utils"* ]]; then
     echo "Versioning @wbuilder/utils"
-    execute=`cd packages/utils && npm version patch`
+    execute=`cd packages/utils && npm version patch && git add . && git commit -m "Versioning @wbuilder/utils"`
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"
