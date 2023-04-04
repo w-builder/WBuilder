@@ -15,7 +15,18 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org
-      - run: npm install
+      - name: Install dependencies
+        run: |
+          rm -rf node_modules
+          npm ci
+      - name: Verify package installation
+        run: |
+          echo "Webpack version:"
+          npx webpack --version
+          echo "Webpack CLI version:"
+          npx webpack-cli --version
+          echo "Listing node_modules:"
+          ls node_modules
       - run: npm run build
       - run: chmod u+x scripts/publish.sh
       - run: git config --global user.email "foggdev@gmail.com"
