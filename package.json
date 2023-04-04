@@ -11,8 +11,6 @@
     "lint:fix": "eslint --ext .tsx,.ts ./packages/**/src",
     "build": "npm-run-all build:*",
     "build:devtools": "cd ./packages/devtools && npm run build",
-    "build:i18n": "cd ./packages/i18n && npm run build",
-    "build:utils": "cd ./packages/utils && npm run build",
     "versioning": "./scripts/publish.sh"
   },
   "devDependencies": {
