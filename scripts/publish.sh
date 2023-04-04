@@ -4,6 +4,10 @@ fix='fix'
 feat='feat'
 major='major'
 
+devtools='devtools'
+i18n='i18n'
+utils='utils'
+
 echo $lastCommit
 
 # if [[ "$lastCommit" == *"$feat"* ]]; then
@@ -26,14 +30,17 @@ echo $lastCommit
 #   exit
 # fi
 
-# if [[ "$lastCommit" == *"$fix"* ]]; then
-#   execute=`npm version patch`
-#   echo "Creating a major version: $execute"
-#   push=`git push origin main -f`
-#   echo "$push"
-#   publish=`npm publish`
-#   echo "$publish"
-#   exit
-# fi
-
+if [[ "$lastCommit" == *"$fix"* ]]; then
+  if [[ "$lastCommit" == *"$utils"* ]]; then
+    echo "utils"
+    execute=`cd packages/utils && npm run prepublishOnly && npm version patch`
+    echo "Creating a patch version: $execute"
+    push=`git push origin main -f`
+    echo "$push"
+    publish=`cd packages/utils && npm publish`
+    echo "$publish"
+    exit
+  fi
+  exit
+fi
 exit
