@@ -31,6 +31,17 @@ echo $lastCommit
 # fi
 
 if [[ "$lastCommit" == *"$fix"* ]]; then
+  if [[ "$lastCommit" == *"$devtools"* ]]; then
+    echo "Versioning @wbuilder/devtools"
+    execute=`cd packages/devtools && npm version patch && git add . && git commit -m "Versioning @wbuilder/devtools"`
+    echo "Creating a patch version: $execute"
+    push=`git push origin main -f`
+    echo "$push"
+    publish=`cd packages/devtools && npm publish`
+    echo "$publish"
+    exit
+  fi
+
   if [[ "$lastCommit" == *"$i18n"* ]]; then
     echo "Versioning @wbuilder/i18n"
     execute=`cd packages/i18n && npm version patch && git add . && git commit -m "Versioning @wbuilder/i18n"`

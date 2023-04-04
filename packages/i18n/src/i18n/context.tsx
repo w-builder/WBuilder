@@ -19,6 +19,7 @@ type Props = {
 }
 
 export const I18nProvider: FC<Props> = ({ children, locale = 'en-us' }) => {
+  console.log('i18n 1.0.1')
   const t = (key: Translations, replacements?: any, forceLocale?: Locale) => {
     const translation = translations[key]
     const currentLocale = forceLocale || locale
