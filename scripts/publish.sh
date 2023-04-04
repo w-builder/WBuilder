@@ -4,6 +4,8 @@ fix='fix'
 feat='feat'
 major='major'
 
+echo $lastCommit
+
 # if [[ "$lastCommit" == *"$feat"* ]]; then
 #   execute=`npm version minor`
 #   echo "Creating a feature version: $execute"
