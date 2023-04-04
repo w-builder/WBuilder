@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           rm -rf node_modules
-          npm ci
+          npm install
       - name: Verify package installation
         run: |
           echo "Webpack version:"
