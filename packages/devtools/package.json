@@ -11,7 +11,8 @@
     "clean": "rm -rf ./dist",
     "compile": "tsc",
     "lint": "npm run --prefix ../../ lint",
-    "lint:fix": "npm run --prefix ../../ lint:fix"
+    "lint:fix": "npm run --prefix ../../ lint:fix",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "author": "Carlos Santana",
   "license": "MIT",
