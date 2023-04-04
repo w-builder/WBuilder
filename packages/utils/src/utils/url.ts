@@ -41,7 +41,7 @@ export function getParams(url: string, index = 0): string | string[] {
   return ''
 }
 
-export const getCurrentLocale = (url?: string, defaultLanguage = 'en-us') => {
+export const getCurrentLocaleFromUrl = (url?: string, defaultLanguage = 'en-us') => {
   const params = getParams(url || '')
   return params && is.Language(params[0]) ? params[0] : defaultLanguage
 }
@@ -49,7 +49,7 @@ export const getCurrentLocale = (url?: string, defaultLanguage = 'en-us') => {
 export function redirectTo(url = '/', includeLanguage?: any): void {
   if (is.Browser()) {
     const { pathname } = window.location
-    const locale = getCurrentLocale()
+    const locale = getCurrentLocaleFromUrl()
     let slash = '/'
 
     if (url === '_self') {
