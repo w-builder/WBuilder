@@ -35,10 +35,10 @@ if [[ "$lastCommit" == *"$fix"* ]]; then
     echo "Versioning @wbuilder/utils"
     execute=`cd packages/utils && npm version patch`
     echo "Creating a patch version: $execute"
-    # push=`git push origin main -f`
-    # echo "$push"
-    # publish=`cd packages/utils && npm publish`
-    # echo "$publish"
+    push=`git push origin main -f`
+    echo "$push"
+    publish=`cd packages/utils && npm publish`
+    echo "$publish"
     exit
   fi
   exit
