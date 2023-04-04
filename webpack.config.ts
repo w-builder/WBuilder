@@ -27,14 +27,17 @@ const modeConfig: (args: ConfigArgs) => Configuration = ({ mode, type, packageNa
 }
 
 // Merging all configurations
-const webpackConfig: (args: ConfigArgs) => Promise<Configuration> = async (
-  { mode, type, sandbox, packageName } = {
-    mode: 'production',
-    type: 'web',
-    sandbox: 'false',
-    packageName: 'design-system'
-  }
-) => {
+const webpackConfig: (args: ConfigArgs) => Promise<Configuration> = async (args) => {
+  const parsedEnv = Object.keys(args).reduce((acc: any, key) => {
+    const [name, value] = key.split('=')
+    acc[name] = value
+    return acc
+  }, {})
+
+  const { mode, type, packageName, sandbox } = parsedEnv
+
+  console.log('Parsed env:', parsedEnv)
+
   const isSandbox = type === 'package' && sandbox === 'true'
   const commonConfiguration = getWebpackCommonConfig({
     configType: type,
