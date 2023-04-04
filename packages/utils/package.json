@@ -14,7 +14,7 @@
     "lint": "npm run --prefix ../../ lint",
     "lint:fix": "npm run --prefix ../../ lint:fix",
     "prepublishOnly": "npm run lint && npm run build",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:coverage": "jest --coverage",
     "webpack:development": "webpack --config=../../webpack.config.ts --env mode=development --env type=package --env packageName=utils",
     "webpack:production": "webpack --config=../../webpack.config.ts --env mode=production --env type=package --env packageName=utils"
@@ -24,6 +24,7 @@
   "dependencies": {
     "@wbuilder/i18n": "^1.0.0",
     "currency-formatter": "^1.5.9",
+    "isomorphic-unfetch": "^4.0.2",
     "slug": "^5.3.0",
     "uuid": "^8.3.2"
   },
