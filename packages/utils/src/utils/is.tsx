@@ -1,5 +1,6 @@
 import { isValidLanguage } from '@wbuilder/i18n'
 
+console.log('IS UTILS')
 const is = {
   Array(v: unknown) {
     return v instanceof Array
