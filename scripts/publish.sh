@@ -32,8 +32,8 @@ echo $lastCommit
 
 if [[ "$lastCommit" == *"$fix"* ]]; then
   if [[ "$lastCommit" == *"$utils"* ]]; then
-    echo "utils"
-    execute=`cd packages/utils && npm run prepublishOnly && npm version patch`
+    echo "Versioning @wbuilder/utils"
+    execute=`cd packages/utils && npm version patch`
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"
