@@ -1,6 +1,5 @@
 import HtmlWebPackPlugin from 'html-webpack-plugin'
 import path from 'path'
-import createStyledComponentsTransformer from 'typescript-plugin-styled-components'
 import { Configuration } from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import nodeExternals from 'webpack-node-externals'
@@ -93,18 +92,7 @@ const getWebpackCommonConfig = (args: ModeArgs): Configuration => {
   rules.push({
     test: /\.(tsx|ts)$/,
     exclude: /node_modules/,
-    loader: 'ts-loader',
-    options: {
-      getCustomTransformers: () => ({
-        before: [
-          createStyledComponentsTransformer({
-            displayName: true,
-            ssr: true,
-            minify: true
-          })
-        ]
-      })
-    }
+    loader: 'ts-loader'
   })
 
   if (configType === 'package' && sandbox) {
