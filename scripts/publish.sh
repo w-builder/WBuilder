@@ -48,7 +48,7 @@ if [[ "$lastCommit" == *"$fix"* ]]; then
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"
-    publish=`cd packages/utils && npm publish`
+    publish=`cd packages/i18n && npm publish`
     echo "$publish"
     exit
   fi
