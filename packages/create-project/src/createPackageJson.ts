@@ -1,9 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import latestVersion from 'latest-version'
 
 async function createPackageJson(projectPath: string, projectName: string) {
   // Get the latest versions
+  const latestVersion = (await import('latest-version')).default
+
   const reactVersion = await latestVersion('react')
   const reactDomVersion = await latestVersion('react-dom')
   const jestDomVersion = await latestVersion('@testing-library/jest-dom')
