@@ -36,7 +36,7 @@ function createProject(projectName: string) {
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo Error: no test specified && exit 1"
   },
   "keywords": [],
   "author": "",
