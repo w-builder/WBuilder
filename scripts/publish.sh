@@ -4,6 +4,7 @@ fix='fix'
 feat='feat'
 major='major'
 
+createProject='create-project'
 devtools='devtools'
 i18n='i18n'
 utils='utils'
@@ -31,6 +32,17 @@ echo $lastCommit
 # fi
 
 if [[ "$lastCommit" == *"$fix"* ]]; then
+  if [[ "$lastCommit" == *"$createProject"* ]]; then
+    echo "Versioning @wbuilder/create-project"
+    execute=`cd packages/create-project && npm version patch && git add . && git commit -m "Versioning @wbuilder/create-project"`
+    echo "Creating a patch version: $execute"
+    push=`git push origin main -f`
+    echo "$push"
+    publish=`cd packages/create-project && npm publish`
+    echo "$publish"
+    exit
+  fi
+
   if [[ "$lastCommit" == *"$devtools"* ]]; then
     echo "Versioning @wbuilder/devtools"
     execute=`cd packages/devtools && npm version patch && git add . && git commit -m "Versioning @wbuilder/devtools"`
