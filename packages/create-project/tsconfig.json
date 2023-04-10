@@ -1,9 +1,7 @@
 {
   "extends": "../../tsconfig.common.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "ES2020",
-    "esModuleInterop": true
+    "outDir": "./dist"
   },
   "include": ["src/**/*"]
 }

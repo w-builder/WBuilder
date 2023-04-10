@@ -2,36 +2,27 @@ import fs from 'fs'
 import path from 'path'
 
 async function createPackageJson(projectPath: string, projectName: string) {
-  // Get the latest versions
-  const latestVersion = (await import('latest-version')).default
-
-  const reactVersion = await latestVersion('react')
-  const reactDomVersion = await latestVersion('react-dom')
-  const jestDomVersion = await latestVersion('@testing-library/jest-dom')
-  const testingLibraryReactVersion = await latestVersion('@testing-library/react')
-  const userEventVersion = await latestVersion('@testing-library/user-event')
-
   const packageJsonContent = `{
-  "name": "${projectName}",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo Error: no test specified && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react": "${reactVersion}",
-    "react-dom": "${reactDomVersion}"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "${jestDomVersion}",
-    "@testing-library/react": "${testingLibraryReactVersion}",
-    "@testing-library/user-event": "${userEventVersion}"
-  }
-}`
+    "name": "${projectName}",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo Error: no test specified && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "react": "18.2.0",
+      "react-dom": "18.2.0"
+    },
+    "devDependencies": {
+      "@testing-library/jest-dom": "^5.11.4",
+      "@testing-library/react": "^11.1.0",
+      "@testing-library/user-event": "^12.1.10"
+    }
+  }`
 
   fs.writeFileSync(path.join(projectPath, 'package.json'), packageJsonContent)
 }
