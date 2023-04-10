@@ -12,7 +12,7 @@ program
   .arguments('<project-directory>')
   .description('Create a new React project')
   .action((projectName) => {
-    console.log('projectName: ', projectName)
+    console.log('Project Name: ', projectName)
     console.log(`Creating a new WBuilder project: ${projectName}`)
     createProject(projectName)
     console.log('Project created successfully!')
