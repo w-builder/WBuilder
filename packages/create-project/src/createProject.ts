@@ -1,17 +1,12 @@
-import fs from 'fs'
 import path from 'path'
+import createDirectory from './createDirectory'
+import createPackageJson from './createPackageJson'
+import createIndexHtml from './createIndexHtml'
+import createAppJs from './createAppJs'
+import createIndexJs from './createIndexJs'
+import createAppCss from './createAppCss'
 
-function createDirectory(directoryPath: string) {
-  if (!fs.existsSync(directoryPath)) {
-    fs.mkdirSync(directoryPath, { recursive: true })
-  }
-}
-
-function createFile(filePath: string, content: string) {
-  fs.writeFileSync(filePath, content)
-}
-
-function createProject(projectName: string) {
+async function createProject(projectName: string) {
   // Create project folder
   const projectPath = path.join(process.cwd(), projectName)
   createDirectory(projectPath)
@@ -29,82 +24,19 @@ function createProject(projectName: string) {
   createDirectory(publicPath)
 
   // Create package.json file
-  const packageJsonContent = `
-{
-  "name": "${projectName}",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo Error: no test specified && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10"
-  }
-}
-`
-  createFile(path.join(projectPath, 'package.json'), packageJsonContent)
+  await createPackageJson(projectPath, projectName)
 
   // Create index.html in public folder
-  const indexHtmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${projectName}</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script src="main.js"></script>
-</body>
-</html>
-`
-  createFile(path.join(publicPath, 'index.html'), indexHtmlContent)
+  createIndexHtml(publicPath, projectName)
 
   // Create App.js in src folder
-  const appJsContent = `
-import React from 'react';
-import './styles/App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello, ${projectName}!</h1>
-    </div>
-  );
-}
-
-export default App;
-`
-  createFile(path.join(srcPath, 'App.js'), appJsContent)
+  createAppJs(srcPath, projectName)
 
   // Create index.js in src folder
-  const indexJsContent = `
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-
-ReactDOM.render(<App />, document.getElementById('root'));
-`
-  createFile(path.join(srcPath, 'index.js'), indexJsContent)
+  createIndexJs(srcPath)
 
   // Create App.css in src/styles folder
-  const appCssContent = `
-.App {
-  text-align: center;
-}
-`
-  createFile(path.join(srcPath, 'styles', 'App.css'), appCssContent)
+  createAppCss(srcPath)
 }
 
 export default createProject

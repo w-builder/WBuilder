@@ -24,6 +24,7 @@
     "chalk": "4.1.2",
     "commander": "^10.0.0",
     "fs-extra": "^11.1.1",
+    "latest-version": "^7.0.0",
     "prompts": "^2.4.2",
     "validate-npm-package-name": "^5.0.0"
   }
