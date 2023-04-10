@@ -34,7 +34,7 @@ echo $lastCommit
 if [[ "$lastCommit" == *"$fix"* ]]; then
   if [[ "$lastCommit" == *"$createProject"* ]]; then
     echo "Versioning @wbuilder/create-project"
-    execute=`cd packages/create-project && npm version patch && git add . && git commit -m "Versioning @wbuilder/create-project"`
+    execute=`cd packages/create-project && npm run lint && npm version patch && git add . && git commit -m "Versioning @wbuilder/create-project"`
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"
@@ -45,7 +45,7 @@ if [[ "$lastCommit" == *"$fix"* ]]; then
 
   if [[ "$lastCommit" == *"$devtools"* ]]; then
     echo "Versioning @wbuilder/devtools"
-    execute=`cd packages/devtools && npm version patch && git add . && git commit -m "Versioning @wbuilder/devtools"`
+    execute=`cd packages/devtools && npm run lint && npm version patch && git add . && git commit -m "Versioning @wbuilder/devtools"`
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"
@@ -56,7 +56,7 @@ if [[ "$lastCommit" == *"$fix"* ]]; then
 
   if [[ "$lastCommit" == *"$i18n"* ]]; then
     echo "Versioning @wbuilder/i18n"
-    execute=`cd packages/i18n && npm version patch && git add . && git commit -m "Versioning @wbuilder/i18n"`
+    execute=`cd packages/i18n && npm run lint && npm version patch && git add . && git commit -m "Versioning @wbuilder/i18n"`
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"
@@ -67,7 +67,7 @@ if [[ "$lastCommit" == *"$fix"* ]]; then
 
   if [[ "$lastCommit" == *"$utils"* ]]; then
     echo "Versioning @wbuilder/utils"
-    execute=`cd packages/utils && npm version patch && git add . && git commit -m "Versioning @wbuilder/utils"`
+    execute=`cd packages/utils && npm run lint && npm version patch && git add . && git commit -m "Versioning @wbuilder/utils"`
     echo "Creating a patch version: $execute"
     push=`git push origin main -f`
     echo "$push"

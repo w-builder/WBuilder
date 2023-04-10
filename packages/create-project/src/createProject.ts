@@ -3,30 +3,30 @@ import path from 'path'
 
 function createDirectory(directoryPath: string) {
   if (!fs.existsSync(directoryPath)) {
-    fs.mkdirSync(directoryPath, { recursive: true });
+    fs.mkdirSync(directoryPath, { recursive: true })
   }
 }
 
 function createFile(filePath: string, content: string) {
-  fs.writeFileSync(filePath, content);
+  fs.writeFileSync(filePath, content)
 }
 
 function createProject(projectName: string) {
   // Create project folder
-  const projectPath = path.join(process.cwd(), projectName);
-  createDirectory(projectPath);
+  const projectPath = path.join(process.cwd(), projectName)
+  createDirectory(projectPath)
 
   // Create src folder and subfolders
-  const srcPath = path.join(projectPath, 'src');
-  createDirectory(srcPath);
-  createDirectory(path.join(srcPath, 'assets'));
-  createDirectory(path.join(srcPath, 'components'));
-  createDirectory(path.join(srcPath, 'services'));
-  createDirectory(path.join(srcPath, 'styles'));
+  const srcPath = path.join(projectPath, 'src')
+  createDirectory(srcPath)
+  createDirectory(path.join(srcPath, 'assets'))
+  createDirectory(path.join(srcPath, 'components'))
+  createDirectory(path.join(srcPath, 'services'))
+  createDirectory(path.join(srcPath, 'styles'))
 
   // Create public folder
-  const publicPath = path.join(projectPath, 'public');
-  createDirectory(publicPath);
+  const publicPath = path.join(projectPath, 'public')
+  createDirectory(publicPath)
 
   // Create package.json file
   const packageJsonContent = `
@@ -51,8 +51,8 @@ function createProject(projectName: string) {
     "@testing-library/user-event": "^12.1.10"
   }
 }
-`;
-  createFile(path.join(projectPath, 'package.json'), packageJsonContent);
+`
+  createFile(path.join(projectPath, 'package.json'), packageJsonContent)
 
   // Create index.html in public folder
   const indexHtmlContent = `
@@ -68,8 +68,8 @@ function createProject(projectName: string) {
   <script src="main.js"></script>
 </body>
 </html>
-`;
-  createFile(path.join(publicPath, 'index.html'), indexHtmlContent);
+`
+  createFile(path.join(publicPath, 'index.html'), indexHtmlContent)
 
   // Create App.js in src folder
   const appJsContent = `
@@ -85,8 +85,8 @@ function App() {
 }
 
 export default App;
-`;
-  createFile(path.join(srcPath, 'App.js'), appJsContent);
+`
+  createFile(path.join(srcPath, 'App.js'), appJsContent)
 
   // Create index.js in src folder
   const indexJsContent = `
@@ -95,16 +95,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-`;
-  createFile(path.join(srcPath, 'index.js'), indexJsContent);
+`
+  createFile(path.join(srcPath, 'index.js'), indexJsContent)
 
   // Create App.css in src/styles folder
   const appCssContent = `
 .App {
   text-align: center;
 }
-`;
-  createFile(path.join(srcPath, 'styles', 'App.css'), appCssContent);
+`
+  createFile(path.join(srcPath, 'styles', 'App.css'), appCssContent)
 }
 
-export default createProject;
+export default createProject
